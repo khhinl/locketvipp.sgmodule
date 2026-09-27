@@ -1,0 +1,13 @@
+#!name=Locket Gold Của Linhh 👑
+#!desc=Module tự tạo giúp kích hoạt tính năng Locket Gold an toàn.
+#!author=Hồ Phan Khánh Linh
+
+[Header Rewrite]
+^https?://://revenuecat.com(receipts$|subscribers/?(.*?)*$) header-del x-revenuecat-etag
+^https?://://revenuecat.com(receipts$|subscribers/?(.*?)*$) header-del X-RevenueCat-ETag
+
+[Script]
+LocketGold = type=http-response, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/[^/]+$), script-path=https://githubusercontent.com, requires-body=true, max-size=-1, timeout=60
+
+[MITM]
+hostname = %APPEND%, api.revenuecat.com
